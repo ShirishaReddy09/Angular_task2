@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center align-center">
+    <div class="list mt-5 shadows">
+        <div class="dateTaskGrid">
+            <div class="date">
+                <h1 class="mt-2 p-4 test-center">Task list</h1>
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-between p-3 addbtnflex">
+            <input id="taskinput" class="taskForm" type="text" [(ngModel)]="taskvalue" placeholder="Add new task" /> 
+            <button (click)="addTask()" class="btn addbutton" [disabled]="!taskvalue">ADD TASKS</button>
+        </div>
+        
+        <div class="task-div p-3">
+            <div *ngIf="!taskArray.length" class="p-1">All tasks are Finished !</div>
+            <div class="tasks" *ngFor="let task of taskArray;let i = index;">
+                <span><button class="btn p-0 green" (click)="completeTask(i)">
+                        <i *ngIf="task.status" class="fa fa-circle fa-lg"></i>
+                        <i *ngIf="!task.status" class="fa fa-check-circle fa-lg "></i>
+                    </button></span>
+                <span class="m-1" [ngClass]="{'completedtask':!task.status}">{{task.title}}</span>
+                <span class="trash">
+                    <button class="btn p-0 green" (click)="deleteTask(i)">
+                        <i class="fa fa-trash fa-lg"></i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button class="btn clearBtn shadows mb-4" (click)="removeAll()"><i class="fa fa-trash fa-lg"></i>Clear completed tasks</button>
+        </div>
+    </div>
+  </div>
+  
+  
